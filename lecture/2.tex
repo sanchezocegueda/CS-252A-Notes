@@ -1,0 +1,106 @@
+% Restart the counters
+\setcounter{section}{0}
+\counterwithout{section}{chapter}
+
+\textbf{January 23$^{\text{rd}}$}
+
+The big themes of these course are the following:
+\begin{itemize}
+    \item Core operations / Turing completeness
+    \item Stored program / Universal Turing machine
+    \item Abstraction
+    \item Technology-influenced design choices
+\end{itemize}
+
+\section{More History}
+Around the 1930s, analog computing was popular.
+Mostly, this was due to cost, as digital computing was still too expensive to be feasible.
+Generally, the idea for computers was for them to be able to do math quickly.
+
+Around the 1940s (during World War II), a lot of computer advances were made.
+Several machines were created around this time:
+\begin{enumerate}
+    \item Atanasoff-Berry Linear Equation Solver (1939)
+    \item Zuse Z3 (1941)
+    \item Harvard Mark I (1944)
+    \item ENIAC (1946)
+    \item EDVAC (1951)
+    \item EDSAC (1949)
+    \item Manchester SSEM ``Baby'' (1948)
+\end{enumerate}
+These machines were in a middle ground of being fixed-function but also general-purpose.
+
+The EDSAC-II was the first machine with a microprogrammed control unit.
+
+% TODO: Add a section on each of these computers
+
+Later came the commercial computers:
+\begin{enumerate}
+    \item BINAC (1949)
+    \item UNIVAC (1951)
+    \item IBM 701 (1952)
+    \item IBM 650 (1953) -- first mass-produced computer, based on drum storage
+\end{enumerate}
+The idea 
+
+Aside: mercury delay line (early implementation of memory).
+
+
+\section{Instruction sets}
+
+Early instruction sets were mostly single-address accumulator-style machines.
+
+
+\subsection{IBM 650 Instruction Set}
+Uhh
+
+\subsection{Burrough's B5000 Stack Architecture}
+This was a different style of ISA and architecture.
+The idea was to program with the idea of a stack.
+You could push things onto a stack.
+The idea was that this would be more efficient because indexing into an array would be inefficient.
+
+
+\subsection{IBM 360 Architecture}
+Amdahl, Blaauw, and Brooks came up with an idea of a single, unified ISA in 1964.
+
+Here are their postulates:
+% on the slides
+
+\section{Instruction Set Architecture}
+This next part of the lecture is going to go deeper into ISA and abstraction between software and hardware.
+The particular microarchitectural style was microprogramming.
+
+% Define ISA
+% Define microarchitecture
+
+Nominally, one should be able to take their ISA and implement it however you want.
+However, they were often designed with a specific microarchitectural style in mind.
+% Add the info in the slides?
+
+\section{Terminology}
+
+\textbf{ISA} An ISA is composed of the architectural state of the machine and the semantics for manipulating that state.
+
+\noindent Architectural state := ISA-visible registers, PC, memory
+
+\noindent Semantics := what are instructions, what do they do
+
+\noindent \textbf{Microarchitecture} The physical implementation of the ISA
+
+
+\section{Microprogramming}
+This is a little bit archair, although every CISC machine does it.
+
+\subsection{Control vs. Datapath}
+One way to think about a design is to consider an implementation and see it as a \textit{datapath} and its \textit{control path}.
+The \textit{datapath} is where the numbers are stored and arithmetic operations computed.
+The \textit{control path} sequences the operations on the datapath.
+Generally, getting the control path right is more difficult than getting the datapath right.
+
+Microcoded CPUs are microarchitecture implementation of an ISA (?)
+
+Microcode ROM takes the micropc and light ups one of the rows in the rom and those dots correspond to the control signals that ytou want
+
+Technology influence: ROM is proportional to ISA's complexity
+
