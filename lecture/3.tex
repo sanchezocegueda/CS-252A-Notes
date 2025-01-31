@@ -1,0 +1,99 @@
+
+\setcounter{section}{0}
+\counterwithout{section}{chapter}
+
+\textbf{January 28$^{\text{th}}$}
+
+\section{RISC-V}
+
+Recall the different phases of RISC-V instruction execution
+
+\begin{itemize}
+    \item Instruction Fetch
+    \item Instruction Decode
+    \item Register Fetch
+    \item ALU Operations
+    \item \textit{Optional} Memory Operations
+    \item \textit{Optional} Register Writeback
+    \item Calculate Next Instruction Address
+\end{itemize}
+
+\section{Microcode Sketches}
+
+Instruction fetch:
+
+\begin{enumerate}
+    \item $M_A, A := PC$
+    \item $PC := A + 4$
+    \item wait for memory
+    \item $IR := Mem$
+    \item dispatch on opcode
+\end{enumerate}
+
+Note that we can latch the PC into the operand of the ALU because we can already have it.
+The other reason why we do $PC := A+4$ as the second instruction, is that we have an opportunity to hide the number of cycles that it takes to do $PC := A +4$ by doing it in the shadow of the memory operation.
+
+\section{Pure ROM Implementation}
+This is a very redundant and thus very inefficient design.
+However, it is nice because it is easy to 
+
+Address bits:
+
+$$|\mu_{address}| = |\mu_{PC}| + |opcode| + 1 + 1$$
+
+Data bits:
+
+$$|data| = |\mu_{PC}| + |control\;signals| = |\mu_{PC}| + 18$$
+
+Total ROM size = 
+
+$$2^{|address|} \times |data|$$
+
+No logic, no RAM, huge on ROM.
+
+\subsection{Reducing Control Store Size}
+There are two main approaches towards optimizing this ROM.
+The first is to shrink is height, and the second is to shrink its width.
+To shrink its height, we want to make the 
+To reduce its width, we want to get less control signals.
+
+
+\section{Single-Bus RISC-V Microcode Engine}
+
+The idea is to add some logic to multiplex some of the $\mu_{PC}$ values.
+This reduces the number of bits that we need to encode into the address.
+
+Moral of the story: 
+A little bit of logic will allow you to reduce your ROM size quite a bit.
+
+This is a bit-addressable ROM, so the atomic increment of PC is 4.
+
+All of this is microarchitectural, it is not adhering to any ISA-level rules.
+
+\section{Nanocoding}
+Nanocoding is a way to coding that tries to implement the best parts of both horizontal and vertical microcode.
+It adds a level of indirection as subroutines for microcode.
+It adds an indirection table.
+
+\subsection{Horizontal Microcode}
+
+
+\subsection{Vertical Microcode}
+
+
+
+One way to fix a bug in an implementation is by patching the microcode ROM.
+
+\section{Pipelining}
+
+
+Iron law of performance
+
+$$\frac{Time}{Program} = \frac{Instructions}{Program} \cdot \frac{Cycles}{Instruction} \cdot \frac{Time}{Cycle}$$
+
+the instructions per program depend on source code, compiler, and ISA
+
+CPI depends on ISA and $\mu$architecture
+
+time per cycle depends upon the $\mu$architecture and base technology (physics)
+

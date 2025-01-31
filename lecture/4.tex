@@ -1,0 +1,90 @@
+\setcounter{section}{0}
+
+We take some time to define CPI in the context of a microcoded machine.
+
+One important for CPI is the notion of an ``average instruction.''
+
+\section{Microcoding}
+CISC - complex ISA, simple datapath
+
+
+\section{From CISC to RISC}
+Use fast RAM to build instruction caches.
+Another innovation was to use the common things well and simply, whcih led to a simpler ISA.
+
+
+
+In terms of the Iron Law, microcoded instructions had more than one cycle per instruction.
+In RISC, a single instruction takes one cycle, meaning that $CPI = 1$.
+The tradeoff is that the cycle time can be quite long.
+CISC, on the other hand has very complicated instructions that take several cycles to finish.
+Thankfully, the cycle time is short for CISC computers.
+Still, \textit{pipelined} RISC computers are able to get the best of both worlds.
+In practice, it is tricky because of hazards, but doable.
+
+
+In practice, most x86 instructions are really close to RISC-V instructions.
+The RISC$\leftrightarrow$hardwired pipeline dual.
+
+When you are calculating CPI, for convenience, we usually ask you to count CPI from the time when the first instruction finishes to the time when the last instruction sequences.
+
+\section{Hazards}
+An instruction in the pipeline may need a resource being used by another instruction in the pipeline.
+There are three basic types of hazards:
+\begin{enumerate}
+    \item Structural: the instruction in the pipeline may need a resource being used by another instruction
+    \item Data: Dependence may be for a data value
+    \item Control: Dependence may be for next instruction's address
+\end{enumerate}
+
+Pipeline bubbles
+
+One way to deal with hazards is to inject bubbles into the pipeline, which can be viewed as forcing the next instruction to wait.
+
+\textbf{Waterfall diagrams}
+
+\subsection{Structural Hazards}
+Structural hazards occur when two instructions need to use the same hardware resource at the same time.
+These are resolved by adding more hardware.
+The classic RISC 5-stage pipeline has no structural hazards by design.
+
+\subsection{Data Hazards}
+Data hazards have to do with data dependencies between instructions.
+There's three types of data hazards:
+
+\begin{enumerate}
+    \item Read-after-write (RAW): Can happen if the write instruction for instruction $I_1$ happens before the read for instruction $I_2$.
+    \item Write-after-read (WAR): Can happen if the writes are enabled after the reads.
+    This doesn't happen in the classic RISC-V hazards.
+    This can be an issue in processors that execute instructions out of order.
+    \item Write-after-write (WAW): Similar to WAR.
+\end{enumerate}
+
+\subsection{Strategies for Data Hazards}
+
+\subsubsection{Interlocking}
+Wait for a hazard to clear by holding dependent instruction in issue stage.
+
+\subsubsection{Bypass}
+Resolve the hazard by bypassing the value ass soon as available.
+
+\subsubsection{Speculate}
+Guess on value, correct if wrong.
+So far, this is mostly only used for branch prediction, stack pointer updates, and memory address disambiguation.
+
+
+\subsection{Control Hazards}
+Control-flow instructions can be either \textbf{direct} or \textbf{indirect}.
+
+\textbf{Direct:} A direct jump is where...
+
+\textbf{Indirect:} When the jump is based on the contents of a register.
+
+For unconditional jumps
+
+for jump register
+
+for conditional branches
+
+for all other instructions
+

@@ -1,4 +1,4 @@
-\documentclass{book}
+\documentclass[openany]{book}
 \usepackage{graphicx} % Required for inserting images
 \usepackage{amsmath, amssymb, amsthm}
 \usepackage[a4paper, total={6in, 8in}]{geometry}
@@ -7,9 +7,17 @@
 \author{Alex Sanchez}
 \date{Last updated: \today}
 
+\usepackage{lipsum}
+\usepackage[Glenn]{fncychap}
+\renewcommand{\chaptername}{LECTURE}
+\ChNameUpperCase
+\ChNumVar{\fontsize{40}{42}\usefont{OT1}{ptm}{m}{n}\selectfont}
+\ChTitleVar{\Large\sc}
+
 \begin{document}
 
 \maketitle
+\tableofcontents
 
 \chapter{Introduction}
 \input{lecture/1.tex}
@@ -17,5 +25,10 @@
 \chapter{Microprogramming}
 \input{lecture/2}
 
+\chapter{Microcoding}
+\input{lecture/3}
+
+\chapter{Pipelining}
+\input{lecture/4}
 
 \end{document}
